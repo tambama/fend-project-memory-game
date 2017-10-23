@@ -10,6 +10,8 @@ var starRating = 3;
 var openCards = [];
 var currentCardIndex = -1;
 var lastCardIndex;
+var startTime;
+var endTime;
 
 /*
  * Display the cards on the page
@@ -81,6 +83,8 @@ function lockOpen(card){
 
     $('li[data-card="'+card+'"]').toggleClass("show match");
     if(openCards.length === 15){
+        endTime = new Date();
+        $('.time').html((endTime.getTime() - startTime.getTime()) / 1000)
         setTimeout(function() {
             displayFinalScore();
         }, 1000);
@@ -118,7 +122,7 @@ function incrementMove(){
         starRating = 0;
         $('.stars li:nth(0) i').toggleClass('fa-star-o')        
     } else {
-        console.log(moveCount)
+        //console.log(moveCount)
     }
 
     $('.moves').html(moveCount);
@@ -138,6 +142,7 @@ function restart(){
 
 // display cards for 5s and hide them
 function display(){
+    startTime = new Date();
     setTimeout(function() {
         $('.card').toggleClass('open show')
     }, 900);
