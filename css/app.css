@@ -41,7 +41,7 @@ h1 {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 /*
@@ -149,6 +149,10 @@ h1 {
     color: rgb(33, 201, 33);
 }
 
+.text-white {
+    color: #ffffff;
+}
+
 .text-large {
     font-size: 33px;
 }
@@ -160,4 +164,25 @@ h1 {
 .clock {
     float: left;
 }
+
+.left {
+    float: left;
+}
+
+.start {
+    text-align: center;
+    position: relative;
+    top: 25%;
+    left:40%;
+}
+
+.start button {
+    background-color: rgb(18, 155, 18);
+    font-size: 21px;
+    border: 1px solid green;
+    border-radius: 3px;
+    color: white;
+}
+
+
 

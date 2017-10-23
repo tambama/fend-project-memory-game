@@ -17,9 +17,9 @@
             </header>
 
             <section class="timer">
-                
+                <span class="clock"> 00:00:00</span>
             </section>
-            <span class="clock"></span>
+
             <section class="score-panel">
                 <ul class="stars">
                     <li><i class="fa fa-star"></i></li>
@@ -34,15 +34,23 @@
                 </div>
             </section>
     
-            <ul class="deck">
+            <ul class="deck hidden">
                 
             </ul>
+
+            <div class="deck starter">
+                <div class="start">
+                     <h1><span class="fa fa-clock-o text-white text-large"></span></h1>
+                     <br>
+                     <button onclick="restart()" type="button">Play again!</button>
+                </div>
+            </div>
         </section>
 
         <section class="completion-page hidden">
             <h1><span class="fa fa-check-square-o text-green text-large"></span></h1>
             <h2>Congratulations! You won!</h2>
-            <p>It took you <span class="time"></span> secs to win. With <span class="moves"></span> Moves and <span class="stars"></span> Stars <br> Wooooooooooo!</p>
+            <p>It took you <span class="time"></span> to win. With <span class="moves"></span> Moves and <span class="stars"></span> Stars <br> Wooooooooooo!</p>
             <button id="goToPlay" type="button">Play again!</button>
         </section>
     </div>
