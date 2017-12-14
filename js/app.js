@@ -6,10 +6,12 @@
 
 
 var moveCount = 0;
+var flipCount = 0;
 var starRating = 3;
 var openCards = [];
 var currentCardIndex = -1;
 var lastCardIndex;
+var timer;
 
 /*
  * Display the cards on the page
@@ -33,6 +35,7 @@ function shuffle(array) {
     return array;
 }
 
+// shuffle card list and add them to the board
 function createCards(){
     var shuffled = shuffle(cardList);
     var cards = shuffled.map(card => '<li data-card="'+ card +'" class="card"><i class="fa '+ card +'"></i></li>');
@@ -47,10 +50,13 @@ function createCards(){
 
 // flip a card
 function flipCard(){
+    //set up the event listener for a card. If a card is clicked
     $(".card").click(function(){
         // cannot flip a card locked as matched
         if($(this).hasClass('match') || $(this).hasClass('open'))
             return;
+        
+        // display the card's symbol
         $(this).toggleClass("open show");
         lastCardIndex = currentCardIndex;
         currentCardIndex = $('.card').index($(this));
@@ -63,10 +69,15 @@ function addToOpen(card, current, last){
     if(openCards.length % 2 !== 0){
         
         var lastCard = openCards[openCards.length - 1];
+        //if the list already has another card, check to see if the two cards match
         if(lastCard === card){
+
+            //if the cards do match, lock the cards in the open position
             lockOpen(card);
             openCards.push(card);
         } else {
+
+            //if the cards do not match, remove the cards from the list and hide the card's symbol
             removeFromOpen(current, last)
         }
     } else{
@@ -80,6 +91,11 @@ function addToOpen(card, current, last){
 function lockOpen(card){
 
     $('li[data-card="'+card+'"]').toggleClass("show match");
+    //increment the move counter and display it on the page
+    flipCount++;
+    $('.moves').html(flipCount);
+
+    //if all cards have matched, display a message with the final score 
     if(openCards.length === 15){
         $('.time').html(window.myTime);
         setTimeout(function() {
@@ -106,6 +122,11 @@ function removeFromOpen(currentCard, lastCard){
 
 // Increment the moves counter and set star-rating
 function incrementMove(){
+
+    if(moveCount === 0){
+        timer = setInterval(clock, 1000);
+    }
+
     moveCount++;
     if(moveCount <= 16){
         starRating = 3;
@@ -115,14 +136,10 @@ function incrementMove(){
     } else if(moveCount ===  21){
         starRating = 1;
         $('.stars li:nth(1) i').toggleClass('fa-star-o')       
-    } else if(moveCount === 25){
-        starRating = 0;
-        $('.stars li:nth(0) i').toggleClass('fa-star-o')        
     } else {
         //console.log(moveCount)
     }
 
-    $('.moves').html(moveCount);
     $('span.stars').html(starRating);
     
 }
@@ -143,11 +160,13 @@ function restart(){
     minutes = 0;
     hours = 0;
 
-    setInterval(clock, 1000);
-
     starRating = 3;
+    $('.stars li i').removeClass('fa-star-o');
+    
     moveCount = 0;
-    $('.moves').html(moveCount);
+    $('.moves').html(flipCount);
+
+    clearInterval(timer);
 }
 
 // display cards for 5s and hide them
@@ -163,6 +182,7 @@ function display(){
 
 // Display the final score when all card match
 function displayFinalScore(){
+    clearInterval(timer);
     $('.game-page, .completion-page').toggleClass('hidden');
 }
 
@@ -175,38 +195,20 @@ function goToPlay(){
 
 // Click event on restart
 $(".restart").click(function(){
-    restart();
-    flipCard();
-    
     seconds = 0;
     minutes = 0;
     hours = 0;
-
-    setInterval(clock, 1000);
+    
+    restart();
+    flipCard();
 });
 
 // Click event on game completion
 $('#goToPlay').click(function(){
     goToPlay();
-})
+});
 
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
-
- // Clock
-var seconds = 0;
-var minutes = 0;
-var hours = 0;
-
+ // Clock function
  function clock() {
 
     seconds++;
