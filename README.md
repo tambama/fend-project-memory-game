@@ -2,8 +2,8 @@
 
 ## Table of Contents
 
-* [How to run the game](#How-to-run-the-game)
-* [Game Instructions](#Game-Instructions)
+* [How to run the game](#how-to-run-the-game)
+* [Game Instructions](#hame-instructions)
 
 ## How to run the game
 
