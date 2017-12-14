@@ -3,7 +3,7 @@
 ## Table of Contents
 
 * [How to run the game](#how-to-run-the-game)
-* [Game Instructions](#hame-instructions)
+* [Game Instructions](#game-instructions)
 
 ## How to run the game
 
