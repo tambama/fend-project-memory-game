@@ -2,19 +2,24 @@
 
 ## Table of Contents
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+* [How to run the game](#how-to-run-the-game)
+* [Game Instructions](#game-instructions)
 
-## Instructions
+## How to run the game
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+* Download or Clone the game using `git clone https://github.com/tambama/fend-project-memory-game.git`
+* If you download, unzip the game to a local directory
+* Open the index.html file to play the game
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Game Instructions
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+1. Click Start button
+2. Game shuffles the cards
+3. Remember each card's position
+4. Click the cards to match them pair by pair
+5. You win once all cards have successfully been matched.
+6. A restart button allows the player to reset the game board, the timer, and the star rating.
+7. If your moves are equal to 16 then you will get 3 Stars.
+8. If your moves are greater than 16 and less than 22 then you will get 2 Stars else you get 1 star
 
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+## Good Luck!!!!
